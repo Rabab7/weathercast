@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>WeatherForcast</title>
+    
+    <link rel="icon" type="image/png" href="/favicon.png">
+    <style>
+      /* Custom styles for icons and animations */
+      .icon {
+        width: 24px;
+        height: 24px;
+      }
+      .theme-toggle .icon {
+        transition: transform 0.3s ease;
+      }
+      .theme-toggle:hover .icon {
+        transform: rotate(180deg);
+      }
+      .alert-box {
+        position: fixed;
+        top: 20px;
+        right: 20px;
+        z-index: 1000;
+      }
+    </style>
+    <link rel="stylesheet" href="./dist/css/all.min.css">
+    <link rel="stylesheet" href="./dist/css/style.css">
+  </head>
+  <body class="bg-gray-100 text-gray-900 dark:bg-gray-900 dark:text-gray-100">
+    <!-- Navbar -->
+    <nav class="bg-white dark:bg-gray-800 shadow-md py-4">
+      <div class="container mx-auto flex justify-between items-center px-4">
+        <!-- Brand -->
+        <div class="flex items-center space-x-2">
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            class="icon dark:text-white"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="2"
+          >
+            <path d="M17.5 19H9a7 7 0 1 1 6.71-9h1.79a4.5 4.5 0 1 1 0 9Z" />
+          </svg>
+          <span class="text-xl dark:text-white font-semibold">WeatherCast</span>
+        </div>
+
+        <!-- Search Bar -->
+        <div class="relative flex-grow mx-8">
+          <input
+            type="text"
+            placeholder="Search City..."
+            id="searchInput"
+            class="w-full bg-white px-4 py-2 text-black dark:text-white rounded-lg border border-gray-300 focus:outline-none focus:ring-2 focus:ring-blue-500 dark:bg-gray-700 dark:border-gray-600 placeholder:text-black dark:placeholder:text-white"
+          />
+          <svg
+            class="absolute right-3 top-2.5 icon text-gray-500 dark:text-white"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="2"
+          >
+            <circle cx="11" cy="11" r="8" />
+            <path d="m21 21-4.3-4.3" />
+          </svg>
+          <div class="suggestSearch absolute hidden w-full bg-white dark:bg-gray-700 mt-1 rounded-lg shadow-lg"></div>
+        </div>
+
+        <!-- Theme Toggle -->
+        <button
+          id="theme-toggle"
+          class="p-2 rounded-full hover:bg-gray-200 dark:hover:bg-gray-700 transition-colors"
+          aria-label="Toggle theme"
+        >
+          <svg
+            class="icon moon dark:text-blue-700"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="2"
+          >
+            <path d="M12 3a6 6 0 0 0 9 9 9 9 0 1 1-9-9Z" />
+          </svg>
+          <svg
+            class="icon sun hidden dark:text-yellow-500 "
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="2"
+          >
+            <circle cx="12" cy="12" r="4" />
+            <path d="M12 2v2" />
+            <path d="M12 20v2" />
+            <path d="m4.93 4.93 1.41 1.41" />
+            <path d="m17.66 17.66 1.41 1.41" />
+            <path d="M2 12h2" />
+            <path d="M20 12h2" />
+            <path d="m6.34 17.66-1.41 1.41" />
+            <path d="m19.07 4.93-1.41 1.41" />
+          </svg>
+        </button>
+      </div>
+    </nav>
+
+    <!-- Main Content -->
+    <main class="container mx-auto px-4 py-8">
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6" id="data"></div>
+    </main>
+
+    <!-- Hourly Data -->
+    <div class="mt-5">
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 p-10 hidden" id="hoursData"></div>
+    </div>
+
+    <!-- Alert Box -->
+    <div id="customAlert" class="alert-box hidden">
+      <div class="bg-white dark:bg-gray-800 p-4 rounded-lg shadow-lg flex justify-between items-center">
+        <span id="alertMessage" class="text-gray-900 dark:text-gray-100"></span>
+        <button id="closeBtn" class="text-gray-900 dark:text-gray-100 hover:text-gray-700 dark:hover:text-gray-300">×</button>
+      </div>
+    </div>
+
+    <script src="./src/js/index.js"></script>
+  </body>
+</html>
