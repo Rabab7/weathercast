@@ -142,7 +142,7 @@ function displayData(response) {
 function displayHours(response) {
   let time = response.forecast.forecastday[0].hour[0].time.split(" ", 2)[1];
   let container = "";
-  for (let i = 0; i < 10; i++) {
+  for (let i = 0; i < 9; i++) {
     let j = i % 12 || 12;
     let isDay = i < 12 ? "AM" : "PM";
 
